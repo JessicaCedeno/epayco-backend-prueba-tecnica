@@ -1,0 +1,185 @@
+<definitions name="ePaycoSOAP"
+    targetNamespace="http://epayco.com/soap"
+    xmlns:tns="http://epayco.com/soap"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <types>
+        <xsd:schema targetNamespace="http://epayco.com/soap">
+            <xsd:element name="registerClientRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="document" type="xsd:string"/>
+                        <xsd:element name="name" type="xsd:string"/>
+                        <xsd:element name="email" type="xsd:string"/>
+                        <xsd:element name="cellphone" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="topUpWalletRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="document" type="xsd:string"/>
+                        <xsd:element name="balance" type="xsd:decimal"/>
+                        <xsd:element name="cellphone" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="payRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="document" type="xsd:string"/>
+                        <xsd:element name="amount" type="xsd:decimal"/>
+                        <xsd:element name="cellphone" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="confirmRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="sessionId" type="xsd:string"/>
+                        <xsd:element name="token" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="getBalanceRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="document" type="xsd:string"/>
+                        <xsd:element name="cellphone" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="standardResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="success" type="xsd:boolean"/>
+                        <xsd:element name="cod_error" type="xsd:string"/>
+                        <xsd:element name="message" type="xsd:string"/>
+                        <xsd:element name="data" type="xsd:anyType"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+
+    <!-- Operations -->
+    <message name="registerClientInput">
+        <part name="params" element="tns:registerClientRequest"/>
+    </message>
+
+    <message name="topUpWalletInput">
+        <part name="params" element="tns:topUpWalletRequest"/>
+    </message>
+
+    <message name="payInput">
+        <part name="params" element="tns:payRequest"/>
+    </message>
+
+    <message name="confirmInput">
+        <part name="params" element="tns:confirmRequest"/>
+    </message>
+
+    <message name="getBalanceInput">
+        <part name="params" element="tns:getBalanceRequest"/>
+    </message>
+
+    <message name="standardOutput">
+        <part name="response" element="tns:standardResponse"/>
+    </message>
+
+
+    <portType name="ePaycoSOAPPort">
+        <operation name="registerClient">
+            <input message="tns:registerClientInput"/>
+            <output message="tns:standardOutput"/>
+        </operation>
+
+        <operation name="topUpWallet">
+            <input message="tns:topUpWalletInput"/>
+            <output message="tns:standardOutput"/>
+        </operation>
+
+        <operation name="pay">
+            <input message="tns:payInput"/>
+            <output message="tns:standardOutput"/>
+        </operation>
+
+        <operation name="confirm">
+            <input message="tns:confirmInput"/>
+            <output message="tns:standardOutput"/>
+        </operation>
+
+        <operation name="getBalance">
+            <input message="tns:getBalanceInput"/>
+            <output message="tns:standardOutput"/>
+        </operation>
+
+        
+    </portType>
+
+    <!-- Binding SOAP -->
+    <binding name="ePaycoSOAPBinding" type="tns:ePaycoSOAPPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="registerClient">
+            <soap:operation soapAction="http://localhost:8000/soap"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="topUpWallet">
+            <soap:operation soapAction="http://localhost:8000/soap"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="pay">
+            <soap:operation soapAction="http://localhost:8000/soap"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="confirm">
+            <soap:operation soapAction="http://localhost:8000/soap"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="getBalance">
+            <soap:operation soapAction="http://localhost:8000/soap"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ePaycoSOAPService">
+        <port name="ePaycoSOAPPort" binding="tns:ePaycoSOAPBinding">
+            <soap:address location="http://localhost:8000/soap"/>
+        </port>
+    </service>
+</definitions>
