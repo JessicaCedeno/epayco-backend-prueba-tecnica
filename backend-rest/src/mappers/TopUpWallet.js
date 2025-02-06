@@ -1,4 +1,4 @@
-const topUpWalletMapper = (body) => {
+const TopUpWalletMapper = (body) => {
     return {
         document: body.document,
         balance: body.balance,
@@ -6,4 +6,4 @@ const topUpWalletMapper = (body) => {
     }
 }
 
-module.exports = topUpWalletMapper;
+module.exports = TopUpWalletMapper;

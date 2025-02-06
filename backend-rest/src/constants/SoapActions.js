@@ -1,4 +1,7 @@
 module.exports = {
     registerClient: "registerClient",
-    topUpWallet: "topUpWallet"
+    topUpWallet: "topUpWallet",
+    pay : "pay",
+    confirm : "confirm",
+    balance : "getBalance"
 }

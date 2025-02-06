@@ -115,7 +115,7 @@ class WalletService {
         $isValid = $this->otpCustom->validate($request['sessionId'], $request['token']);
         
         if(!$isValid)
-            return $this->buildResponse(false, '400', 'No information available to show', []);
+            return $this->buildResponse(false, '400', 'The payment could not be completed. Please try again.', []);
 
         $sessionId = $request['sessionId'];
         $session = $this->otpCustom->getSession($sessionId);

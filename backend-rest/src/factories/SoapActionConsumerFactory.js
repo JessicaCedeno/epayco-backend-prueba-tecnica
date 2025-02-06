@@ -2,11 +2,17 @@ const soapActions = require("../constants/SoapActions");
 const { callSoapService } = require("../services/SoapClient");
 const SoapError = require('../exceptions/SoapError');
 const registerClientMapper = require("../mappers/RegisterClient");
-const topUpWalletMapper = require("../mappers/TopUpWallet");
+const TopUpWalletMapper = require("../mappers/TopUpWallet");
+const PayMapper = require("../mappers/Pay");
+const ConfirmMapper = require("../mappers/Confirm");
+const GetBalanceMapper = require("../mappers/GetBalance");
 
 const dataMapped = {
     [soapActions.registerClient]: registerClientMapper,
-    [soapActions.topUpWallet]: topUpWalletMapper
+    [soapActions.topUpWallet]: TopUpWalletMapper,
+    [soapActions.pay]: PayMapper,
+    [soapActions.confirm]: ConfirmMapper,
+    [soapActions.balance]: GetBalanceMapper,
 }
 
 const soapActionConsumerFactory = async (action, body) => {

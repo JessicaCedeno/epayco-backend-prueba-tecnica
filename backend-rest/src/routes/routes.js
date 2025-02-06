@@ -3,16 +3,15 @@ const router = express.Router();
 const {
   registerClient,
   topUpWallet,
-  initiatePayment,
-  confirmPayment,
-  checkBalance
+  pay,
+  confirm,
+  getBalance
 } = require('../controllers/WalletController');
 
-// Definir rutas REST
 router.post('/register', registerClient);
 router.post('/recharge', topUpWallet);
-// router.post('/pay', initiatePayment);
-// router.post('/confirm-payment', confirmPayment);
-// router.post('/balance', checkBalance);
+router.post('/pay', pay);
+router.post('/confirm', confirm);
+router.post('/balance', getBalance);
 
 module.exports = router;
